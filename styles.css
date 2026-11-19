@@ -91,8 +91,7 @@ body {
   margin: clamp(1.75rem, 4vw, 2.75rem) 0 clamp(1.5rem, 3.5vw, 2.25rem);
   color: var(--bronze);
 }
-.ornament .rule { display: block; width: clamp(3rem, 12vw, 7rem); height: 1px; background: currentColor; }
-.ornament .sash { flex: none; display: block; }
+.ornament .rule { display: block; width: clamp(6rem, 24vw, 15rem); height: 1px; background: currentColor; }
 
 h1 {
   margin: 0;
@@ -178,7 +177,6 @@ a:focus-visible {
 
 @media (max-width: 480px) {
   body { font-size: 1rem; }
-  .ornament { gap: 0.8rem; }
 }
 
 @media print {
