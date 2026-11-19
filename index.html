@@ -29,6 +29,7 @@
 
   <link rel="preload" href="/assets/fonts/playfair-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
+  <script src="/script.js" defer></script>
 
   <script type="application/ld+json">
   {
@@ -60,7 +61,24 @@
       <p class="motto">Preserving the Past. Restoring the Future.</p>
       <p class="note">Our new website is currently undergoing restoration. We look forward to sharing our craftsmanship and completed projects with you soon.</p>
 
-      <a class="button" href="mailto:Bart@warsawwp.com">Contact us</a>
+      <!-- email_off tells Cloudflare not to rewrite the address (Email Address Obfuscation) -->
+      <!--email_off-->
+      <div class="contact">
+        <a class="button" id="contact-button" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=Bart%40warsawwp.com" target="_blank" rel="noopener noreferrer">Contact us<span class="sr-only"> (opens Gmail in a new tab and copies the email address)</span></a>
+
+        <p class="email">
+          <span class="email-address" id="email-address">Bart@warsawwp.com</span>
+          <button type="button" class="copy" id="copy-email" aria-label="Copy email address">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <g class="icon-copy"><rect x="8.5" y="8.5" width="11" height="11" rx="1"/><path d="M15.5 8.5v-3a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3"/></g>
+              <path class="icon-check" d="M5 12.5l4.5 4.5L19 7.5"/>
+            </svg>
+          </button>
+        </p>
+        <p class="status" id="copy-status" role="status" aria-live="polite"></p>
+        <p class="alt"><a href="mailto:Bart@warsawwp.com">Use another email app</a></p>
+      </div>
+      <!--/email_off-->
 
     </main>
 

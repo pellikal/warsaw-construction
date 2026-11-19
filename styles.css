@@ -119,10 +119,89 @@ h1 {
   text-wrap: pretty;
 }
 
-/* Contact button (appears only when the markup in index.html is enabled) */
+/* Contact block: button, visible address with copy icon, confirmation, fallback link */
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2.25rem;
+}
+.contact .button { margin-top: 0; }
+
+.email {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  margin: 1.1rem 0 0;
+  font-size: 1rem;
+  color: var(--charcoal);
+}
+.email-address { overflow-wrap: anywhere; }
+
+.copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--bronze-text);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.copy:hover { color: var(--charcoal); }
+.copy:focus-visible { outline: 2px solid var(--charcoal); outline-offset: 2px; }
+.copy .icon-check { display: none; }
+.copy.is-copied .icon-copy { display: none; }
+.copy.is-copied .icon-check { display: block; }
+
+.status {
+  min-height: 1.5rem;
+  margin: 0;
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--bronze-text);
+}
+
+.alt { margin: 0.35rem 0 0; font-size: 0.8125rem; }
+.alt a {
+  color: var(--mute);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 1px;
+}
+.alt a:hover { color: var(--charcoal); }
+
+/* Off-screen field used only by the clipboard fallback */
+.clip-buffer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  font-size: 16px; /* prevents iOS zoom */
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .button {
   display: inline-block;
-  margin-top: 2.25rem;
+  text-align: center;
+  margin-top: 0;
   padding: 0.95rem 2.1rem;
   background: var(--olive);
   color: var(--ivory);
@@ -144,7 +223,8 @@ h1 {
 }
 .foot p { margin: 0; }
 
-a:focus-visible {
+a:focus-visible,
+.button:focus-visible {
   outline: 2px solid var(--charcoal);
   outline-offset: 4px;
 }
@@ -162,8 +242,12 @@ a:focus-visible {
 .skip:focus { top: 1rem; }
 
 /* Medium-height desktop windows: trim top padding so the button stays in view */
-@media (max-height: 940px) and (min-width: 700px) {
-  .stage { padding-top: 3rem; }
+@media (max-height: 960px) and (min-width: 700px) {
+  .stage { padding-top: 2.25rem; padding-bottom: 0.5rem; }
+  .stage picture { width: min(100%, 30rem); }
+  .ornament { margin: 1.5rem 0 1.4rem; }
+  .contact { margin-top: 1.75rem; }
+  .email { margin-top: 0.7rem; }
 }
 
 /* Short landscape windows: keep everything (including the optional button) in view */
@@ -172,7 +256,8 @@ a:focus-visible {
   .stage picture { width: min(100%, 27rem); }
   .ornament { margin: 1.25rem 0 1.1rem; }
   .note { margin-top: 1.1rem; }
-  .button { margin-top: 1.5rem; }
+  .contact { margin-top: 1.5rem; }
+  .email { margin-top: 0.6rem; }
 }
 
 @media (max-width: 480px) {
