@@ -1,4 +1,4 @@
-/* Warsaw Window Preservation — coming-soon page. Plain CSS, no build step. */
+/* Warsaw Windows & Preservation — coming-soon page. Plain CSS, no build step. */
 
 @font-face {
   font-family: "Playfair Display";
@@ -161,6 +161,11 @@ a:focus-visible {
   font-size: 0.9rem;
 }
 .skip:focus { top: 1rem; }
+
+/* Medium-height desktop windows: trim top padding so the button stays in view */
+@media (max-height: 940px) and (min-width: 700px) {
+  .stage { padding-top: 3rem; }
+}
 
 /* Short landscape windows: keep everything (including the optional button) in view */
 @media (max-height: 820px) and (min-width: 700px) {

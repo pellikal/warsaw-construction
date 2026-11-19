@@ -1,4 +1,4 @@
-# Warsaw Window Preservation — coming-soon page
+# Warsaw Windows & Preservation — coming-soon page
 
 A single static page for **warsawwp.com** while the full website is built. Plain HTML and CSS: no framework, no npm, no build step, no JavaScript, no third-party requests (the two typefaces are self-hosted).
 
@@ -14,7 +14,7 @@ warsaw-coming-soon/
     ├── logo.webp       the same logo, smaller file
     ├── favicon.ico, favicon-32.png, icon-192.png, apple-touch-icon.png
     ├── og-image.png    preview image for link sharing (1200×630)
-    └── fonts/          Playfair Display + Inter (SIL Open Font License; see LICENSE.md)
+    └── fonts/          Playfair Display + Inter, with their full SIL Open Font License texts
 ```
 
 ## Deploy on Cloudflare Pages (from GitHub)
@@ -34,17 +34,21 @@ Every push to the production branch (usually `main`) redeploys automatically. Pu
 
 | Item | Status | What to do |
 |---|---|---|
-| **Contact email** | Not supplied, so the button is hidden | In `index.html`, find the comment headed `CONTACT BUTTON`. Replace `hello@example.com` with the real address and remove the comment markers around the link. Nothing else changes. |
-| **Logo** | The approved skyline logo, exactly as supplied | To replace it, overwrite `assets/logo.png` and `assets/logo.webp` (keep them the same width and shape, or update the `width`/`height` in `index.html`). |
-| **Favicon** | Made from the clock tower in the logo. This is a working default and **needs the client's approval** | To change it, replace `favicon.ico`, `favicon-32.png`, `icon-192.png` and `apple-touch-icon.png`. |
+| **Contact email** | Live: the "Contact us" button opens a new email to `Bart@warsawwp.com` | To change the address, edit the `mailto:` link in `index.html` (one place). |
+| **Company name** | "Warsaw Windows & Preservation", matching the logo, in the page title, metadata, structured data, logo description and footer | Nothing to do. |
+| **Logo** | The approved skyline logo, exactly as supplied | To replace it, overwrite `assets/logo.png` and `assets/logo.webp` (same width and shape, or update `width`/`height` in `index.html`). |
+| **Favicon** | Made from the clock tower in the logo. A working default that **needs the client's approval** | To change it, replace `favicon.ico`, `favicon-32.png`, `icon-192.png` and `apple-touch-icon.png`. |
 | **Share image** | `assets/og-image.png` is the logo on ivory | Replace it if you want something different in link previews. |
 | **Copyright year** | 2026, typed into the footer | Update in `index.html` when the year changes. |
-| **Company name** | The page text says "Warsaw Window Preservation"; the logo reads "Warsaw Windows & Preservation" | Confirm which is correct and make the text and logo agree. |
-| **Search indexing** | The page can be indexed | To keep it out of search results while it is a placeholder, change `content="index, follow"` to `content="noindex"` in `index.html`. |
+
+## Search engines: the page is set to noindex
+
+The page asks Google and other search engines not to list it, in two ways: `<meta name="robots" content="noindex">` in `index.html` and an `X-Robots-Tag: noindex` header in `_headers`. **When the full website launches, remove both**, otherwise the new site will stay out of search results. Do not add a `robots.txt` that blocks the site: search engines must be able to read the page to see the noindex instruction. Noindex works over time as search engines revisit the page; it is not instant.
 
 ## Notes
 
 - Colours: ivory `#F5F2EB`, charcoal `#24231F`, bronze `#9C8060` (rules), a darker bronze `#6A533C` for text, olive `#343D30` (button). Edit them at the top of `styles.css`.
 - Accessibility: one `h1`, landmarks (`main`, `footer`), skip link, visible keyboard focus, text contrast at WCAG AA, decorative graphics hidden from screen readers.
-- The `_headers` file sets a strict Content-Security-Policy. If you later add analytics or other outside scripts, the policy needs updating.
+- The `_headers` file sets a strict Content-Security-Policy (everything blocked except the site's own images, fonts and stylesheet; no scripts). The JSON-LD structured data is a data block, not a script that runs, so it is unaffected. If you later add analytics or other outside scripts, the policy needs updating.
+- Fonts: the full SIL Open Font License texts and copyright notices are in `assets/fonts/` (`OFL-Playfair-Display.txt`, `OFL-Inter.txt`, summarised in `LICENSE.md`). Keep them in the project.
 - Locally: opening `index.html` by double-click will not load the images (paths start with `/`). To preview, run `python3 -m http.server` inside this folder and visit `http://localhost:8000`.
